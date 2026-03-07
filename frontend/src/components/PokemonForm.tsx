@@ -27,7 +27,7 @@ export default function PokemonForm({ initialData, onSubmit }: any) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-lg shadow space-y-4 max-w-md text-black"
+      className="bg-[var(--card)] p-6 rounded-lg shadow space-y-4 max-w-md text-[var(--secondary)]"
     >
 
       <h2 className="text-xl font-semibold">
@@ -73,7 +73,7 @@ export default function PokemonForm({ initialData, onSubmit }: any) {
       />
 
       <button
-        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+        className="bg-[var(--primary)] hover:opacity-90 text-white px-4 py-2 rounded transition"
       >
         Salvar Pokémon
       </button>

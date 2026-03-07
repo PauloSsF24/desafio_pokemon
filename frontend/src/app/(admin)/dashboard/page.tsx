@@ -28,13 +28,13 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-[var(--secondary)]">
 
-      <h1 className="text-3xl font-bold text-black">
+      <h1 className="text-3xl font-bold text-[var(--secondary)]">
         Pokédex Admin
       </h1>
 
-      <div className="bg-white rounded-lg shadow p-6 text-black">
+      <div className="bg-[var(--card)] rounded-lg shadow p-6">
 
         <table className="w-full">
 
@@ -62,7 +62,7 @@ export default function Dashboard() {
                 </td>
 
                 <td>
-                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm">
+                  <span className="bg-[var(--accent)] text-white px-2 py-1 rounded text-sm">
                     {p.type}
                   </span>
                 </td>
@@ -77,14 +77,14 @@ export default function Dashboard() {
 
                   <Link
                     href={`/pokemons/edit/${p.id}`}
-                    className="text-blue-600 hover:underline"
+                    className="text-white font-bold bg-blue-500 hover:bg-blue-500 p-1 rounded transition"
                   >
                     Editar
                   </Link>
 
                   <button
                     onClick={() => deletePokemon(p.id)}
-                    className="text-red-500 hover:underline"
+                    className="text-white font-bold bg-red-500 hover:bg-red-500 p-1 rounded transition"
                   >
                     Excluir
                   </button>

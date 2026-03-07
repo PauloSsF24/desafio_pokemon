@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --primary: #000000;
+  --secondary: #555555;
+  --accent: #000000;
+}
+
+/* Squirtle */
+[data-theme="squirtle"] {
+  --bg: #FFFFFF;
+  --card: #FFFFFF;
+  --primary: #A1D9EF;
+  --secondary: #362426;
+  --accent: #D8B859;
+}
+
+/* Charmander */
+[data-theme="charmander"] {
+  --bg: #FBFBFB;
+  --card: #FBFBFB;
+  --primary: #EA8B24;
+  --secondary: #4B3922;
+  --accent: #EBE6A4;
+}
+
+/* Bulbasaur */
+[data-theme="bulbasaur"] {
+  --bg: #FBFBFB;
+  --card: #FBFBFB;
+  --primary: #7ECAAB;
+  --secondary: #4F8043;
+  --accent: #1A7473;
 }
 
 @theme inline {
@@ -10,13 +40,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {

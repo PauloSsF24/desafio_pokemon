@@ -19,11 +19,11 @@ export default function PokemonsPage() {
   return (
     <div>
       <div className="flex justify-between mb-6">
-        <h1 className="text-2xl font-bold text-black">Pokémons</h1>
+        <h1 className="text-2xl font-bold text-[var(--secondary)]">Pokémons</h1>
 
         <Link
           href="/pokemons/create"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-[var(--primary)] text-white px-4 py-2 rounded"
         >
           Novo Pokémon
         </Link>
@@ -33,7 +33,7 @@ export default function PokemonsPage() {
         {pokemons.map((pokemon: any) => (
           <div
             key={pokemon.id}
-            className="bg-white p-4 rounded shadow flex justify-between"
+            className="bg-[var(--card)] p-4 rounded shadow flex justify-between"
           >
             <div>
               <p className="font-bold">{pokemon.name}</p>
@@ -42,7 +42,7 @@ export default function PokemonsPage() {
 
             <Link
               href={`/pokemons/edit/${pokemon.id}`}
-              className="text-blue-600"
+              className="text-[var(--primary)]"
             >
               Editar
             </Link>

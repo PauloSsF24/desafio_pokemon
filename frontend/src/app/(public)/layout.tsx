@@ -9,14 +9,11 @@ const poppins = Poppins({
 
 export default function PublicLayout({ children }: any) {
   return (  
-    <div className={poppins.className + " bg-gray-100"}>
-
-        <Navbar />
-
-        <main className="max-w-6xl mx-auto p-8">
-          {children}
-        </main>
-
-    </div>
+  <div className={`${poppins.className} min-h-screen bg-[var(--background)] text-[var(--primary)]`}>
+    <Navbar />
+    <main className="max-w-6xl mx-auto p-8">
+      {children}
+    </main>
+</div>
   );
 }

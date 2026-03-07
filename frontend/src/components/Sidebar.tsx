@@ -1,25 +1,52 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+  const router = useRouter();
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    router.push("/login");
+  }
+
   return (
-    <aside className="w-64 h-screen bg-blue-700 text-white p-6 flex flex-col">
-      <h1 className="text-2xl font-bold mb-8">Pokémon Center</h1>
+    <aside className="w-64 min-h-screen bg-[var(--primary)] text-white p-6 flex flex-col justify-between">
 
-      <nav className="flex flex-col gap-4">
-        <Link
-          href="/dashboard"
-          className="hover:bg-blue-600 p-2 rounded transition"
-        >
-          Dashboard
-        </Link>
+      <div>
 
-        <Link
-          href="/pokemons/create"
-          className="hover:bg-blue-600 p-2 rounded transition"
-        >
-          Adicionar Pokemon
-        </Link>
-      </nav>
+        <h1 className="text-2xl font-bold mb-8">
+          Pokémon Center
+        </h1>
+
+        <nav className="flex flex-col gap-3">
+
+          <Link
+            href="/dashboard"
+            className="hover:bg-[var(--accent)] p-2 rounded transition"
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            href="/pokemons/create"
+            className="hover:bg-[var(--accent)] p-2 rounded transition"
+          >
+            Adicionar Pokémon
+          </Link>
+
+        </nav>
+
+      </div>
+
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 hover:bg-red-600 p-2 rounded transition mt-8"
+      >
+        Sair
+      </button>
+
     </aside>
   );
 }
