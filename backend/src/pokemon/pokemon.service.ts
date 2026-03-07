@@ -5,7 +5,7 @@ import { PrismaService } from "../prisma/prisma.service";
 export class PokemonService {
   constructor(private prisma: PrismaService) {}
 
-  create(data, userId) {
+  create(data, userId: number) {
     return this.prisma.pokemon.create({
       data: {
         ...data,

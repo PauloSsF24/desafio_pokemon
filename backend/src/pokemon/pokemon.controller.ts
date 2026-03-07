@@ -1,5 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+  Req,
+  UseGuards,
+} from "@nestjs/common";
+
 import { PokemonService } from "./pokemon.service";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
 
 @Controller("pokemons")
 export class PokemonController {
@@ -10,18 +22,23 @@ export class PokemonController {
     return this.pokemonService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() body) {
-    return this.pokemonService.create(body, body.userId);
+  create(@Body() data: any, @Req() req: any) {
+    const userId = req.user.id;
+
+    return this.pokemonService.create(data, userId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(":id")
-  update(@Param("id") id: string, @Body() body) {
-    return this.pokemonService.update(id, body, body.userId);
+  update(@Param("id") id: string, @Body() body, @Req() req: any) {
+    return this.pokemonService.update(id, body, req.user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(":id")
-  remove(@Param("id") id: string, @Body() body) {
-    return this.pokemonService.delete(id, body.userId);
+  remove(@Param("id") id: string, @Req() req: any) {
+    return this.pokemonService.delete(id, req.user.id);
   }
 }

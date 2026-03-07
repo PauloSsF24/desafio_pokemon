@@ -27,24 +27,29 @@ export default function PokemonForm({ initialData, onSubmit }: any) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 max-w-md"
+      className="bg-white p-6 rounded-lg shadow space-y-4 max-w-md text-black"
     >
+
+      <h2 className="text-xl font-semibold">
+        Dados do Pokémon
+      </h2>
+
       <input
-        className="border p-2"
+        className="border rounded p-2 w-full"
         placeholder="Nome"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
       <input
-        className="border p-2"
+        className="border rounded p-2 w-full"
         placeholder="Tipo"
         value={type}
         onChange={(e) => setType(e.target.value)}
       />
 
       <input
-        className="border p-2"
+        className="border rounded p-2 w-full"
         type="number"
         placeholder="Nível"
         value={level}
@@ -52,7 +57,7 @@ export default function PokemonForm({ initialData, onSubmit }: any) {
       />
 
       <input
-        className="border p-2"
+        className="border rounded p-2 w-full"
         type="number"
         placeholder="HP"
         value={hp}
@@ -60,16 +65,19 @@ export default function PokemonForm({ initialData, onSubmit }: any) {
       />
 
       <input
-        className="border p-2"
+        className="border rounded p-2 w-full"
         type="number"
-        placeholder="Pokedex Number"
+        placeholder="Número da Pokedex"
         value={pokedexNumber}
         onChange={(e) => setPokedexNumber(e.target.value)}
       />
 
-      <button className="bg-blue-500 text-white p-2 rounded">
-        Salvar
+      <button
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+      >
+        Salvar Pokémon
       </button>
+
     </form>
   );
 }

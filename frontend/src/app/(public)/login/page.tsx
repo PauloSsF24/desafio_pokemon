@@ -26,7 +26,7 @@ export default function Login() {
 
       localStorage.setItem("token", data.access_token);
 
-      router.push("/dashboard");
+      router.push("/pokemons");
 
     } catch (err) {
       alert("Erro ao conectar com o servidor");
@@ -34,30 +34,39 @@ export default function Login() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+
       <form
         onSubmit={handleLogin}
-        className="flex flex-col gap-4 w-80"
+        className="bg-white p-8 rounded-lg shadow w-80 space-y-4"
       >
-        <h1 className="text-2xl font-bold">Login</h1>
+
+        <h1 className="text-2xl font-bold text-center text-black">
+          Login
+        </h1>
 
         <input
-          className="border p-2"
+          className="border p-2 w-full rounded text-black"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
-          className="border p-2"
+          className="border p-2 w-full rounded text-black"
           type="password"
           placeholder="Senha"
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="bg-blue-500 text-white p-2">
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded"
+        >
           Entrar
         </button>
+
       </form>
+
     </div>
   );
 }

@@ -13,11 +13,11 @@ export default function CreatePokemon() {
       body: JSON.stringify(data),
     });
 
-    router.push("/dashboard");
+    router.push("/pokemons");
   }
 
   return (
-    <div className="p-10">
+    <div className="p-10 text-black">
       <h1 className="text-2xl mb-6">Criar Pokémon</h1>
 
       <PokemonForm onSubmit={handleCreate} />

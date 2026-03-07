@@ -23,24 +23,24 @@ export default function Register() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <form className="flex flex-col gap-4 w-80">
-        <h1 className="text-2xl font-bold">Registro</h1>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <form className="bg-white p-8 rounded-lg shadow w-80 space-y-4">
+        <h1 className="text-2xl font-bold text-center text-black">Registro</h1>
 
         <input
-          className="border p-2"
+          className="border p-2 w-full rounded text-black"
           placeholder="Nome"
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
-          className="border p-2"
+          className="border p-2 w-full rounded text-black"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
-          className="border p-2"
+          className="border p-2 w-full rounded text-black"
           type="password"
           placeholder="Senha"
           onChange={(e) => setPassword(e.target.value)}
@@ -48,7 +48,7 @@ export default function Register() {
 
         <button
           onClick={handleRegister}
-          className="bg-green-500 text-white p-2"
+          className="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded"
         >
           Criar conta
         </button>
