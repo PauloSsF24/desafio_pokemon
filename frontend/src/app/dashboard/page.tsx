@@ -1,10 +1,14 @@
 "use client";
 
+import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/services/api";
+import Link from "next/link";
 
 export default function Dashboard() {
-  const [pokemons, setPokemons] = useState<any[]>([]);
+  useAuth();
+
+  const [pokemons, setPokemons] = useState([]);
 
   async function load() {
     const data = await apiFetch("/pokemons");
@@ -25,10 +29,24 @@ export default function Dashboard() {
 
   return (
     <div className="p-10">
-      <h1 className="text-3xl mb-6">Pokédex Admin</h1>
+      <div className="flex justify-between mb-6">
+
+        <h1 className="text-3xl font-bold">
+          Pokédex Admin
+        </h1>
+
+        <Link
+          href="/pokemons/create"
+          className="bg-green-500 text-white px-4 py-2 rounded"
+        >
+          Novo Pokémon
+        </Link>
+
+      </div>
 
       <table className="w-full border">
-        <thead>
+
+        <thead className="bg-gray-100">
           <tr>
             <th>Nome</th>
             <th>Tipo</th>
@@ -40,25 +58,37 @@ export default function Dashboard() {
         </thead>
 
         <tbody>
-          {pokemons.map((p) => (
+          {pokemons.map((p: any) => (
             <tr key={p.id}>
+
               <td>{p.name}</td>
               <td>{p.type}</td>
               <td>{p.level}</td>
               <td>{p.hp}</td>
               <td>{p.pokedexNumber}</td>
 
-              <td>
+              <td className="flex gap-2">
+
+                <Link
+                  href={`/pokemons/edit/${p.id}`}
+                  className="text-blue-500"
+                >
+                  Editar
+                </Link>
+
                 <button
                   onClick={() => deletePokemon(p.id)}
                   className="text-red-500"
                 >
                   Excluir
                 </button>
+
               </td>
+
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
   );
