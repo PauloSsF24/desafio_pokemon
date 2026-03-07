@@ -13,14 +13,24 @@ export default function Login() {
   async function handleLogin(e: any) {
     e.preventDefault();
 
-    const data = await apiFetch("/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const data = await apiFetch("/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
 
-    localStorage.setItem("token", data.access_token);
+      if (!data.access_token) {
+        alert("Email ou senha inválidos");
+        return;
+      }
 
-    router.push("/dashboard");
+      localStorage.setItem("token", data.access_token);
+
+      router.push("/dashboard");
+
+    } catch (err) {
+      alert("Erro ao conectar com o servidor");
+    }
   }
 
   return (
