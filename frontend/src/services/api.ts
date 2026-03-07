@@ -3,10 +3,17 @@ const API_URL = "http://localhost:3000";
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   const token = localStorage.getItem("token");
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    ...(options.headers || {}),
   };
+
+  if (options.headers instanceof Headers) {
+    options.headers.forEach((value, key) => {
+      headers[key] = value;
+    });
+  } else if (typeof options.headers === "object" && !Array.isArray(options.headers)) {
+    Object.assign(headers, options.headers);
+  }
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;

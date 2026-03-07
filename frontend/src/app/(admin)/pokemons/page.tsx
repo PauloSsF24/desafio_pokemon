@@ -19,7 +19,7 @@ export default function PokemonsPage() {
   return (
     <div>
       <div className="flex justify-between mb-6">
-        <h1 className="text-2xl font-bold">Pokémons</h1>
+        <h1 className="text-2xl font-bold text-black">Pokémons</h1>
 
         <Link
           href="/pokemons/create"

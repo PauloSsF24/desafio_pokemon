@@ -26,7 +26,7 @@ export default function Home() {
 
       <section className="grid md:grid-cols-3 gap-8">
 
-        <div className="bg-white p-6 rounded-xl shadow">
+        <div className="bg-blue-600 p-6 rounded-xl shadow">
           <h2 className="font-bold text-lg mb-2">
             Gerencie Pokémons
           </h2>
@@ -35,7 +35,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow">
+        <div className="bg-blue-600 p-6 rounded-xl shadow">
           <h2 className="font-bold text-lg mb-2">
             Autenticação Segura
           </h2>
@@ -44,7 +44,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow">
+        <div className="bg-blue-600 p-6 rounded-xl shadow">
           <h2 className="font-bold text-lg mb-2">
             Pokédex Completa
           </h2>

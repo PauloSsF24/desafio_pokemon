@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, BadRequestException } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 
 @Controller("auth")
@@ -11,7 +11,11 @@ export class AuthController {
   }
 
   @Post("login")
-  login(@Body() body) {
-    return this.authService.login(body.email, body.password);
+  login(@Body() body: { email?: string; password?: string }) {
+    const { email, password } = body || {};
+    if (!email || !password) {
+      throw new BadRequestException("Email e senha são obrigatórios");
+    }
+    return this.authService.login(email, password);
   }
 }
