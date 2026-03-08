@@ -28,6 +28,10 @@ Aplicação Fullstack desenvolvida como desafio técnico. O projeto consiste em 
 
 ---
 
+## Demo
+
+https://desafio-pokemon-omega.vercel.app/
+
 # 🎨 Sistema de Temas (Diferencial)
 
 Ao acessar a página inicial, o usuário pode escolher seu **Pokémon inicial**, que altera toda a paleta de cores do sistema.
