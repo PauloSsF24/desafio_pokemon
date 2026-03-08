@@ -5,7 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'https://desafio-pokemon-pd04jypiw-paulossf24s-projects.vercel.app/', // URL do seu projeto frontend
+    origin: 'https://desafio-pokemon-53z18uu45-paulossf24s-projects.vercel.app/', // URL do seu projeto frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
