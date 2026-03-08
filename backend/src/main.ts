@@ -7,10 +7,7 @@ async function bootstrap() {
 
   // Configuração de CORS ajustada
   app.enableCors({
-    origin: [
-      'https://desafio-pokemon-53z18uu45-paulossf24s-projects.vercel.app', // Sem a barra no final
-      /\.vercel\.app$/ // Isso permite qualquer subdomínio da Vercel (opcional, mas útil)
-    ],
+    origin: true, // Isso faz o Nest refletir a origem da requisição, aceitando qualquer uma.
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
