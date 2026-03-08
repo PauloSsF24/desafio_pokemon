@@ -193,8 +193,6 @@ Componentes reutilizáveis como:
 * Busca por nome ou tipo
 * Upload de imagem de Pokémon
 * Perfil de usuário
-* Testes automatizados
-* Deploy em produção
 
 ---
 
