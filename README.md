@@ -187,6 +187,15 @@ Componentes reutilizáveis como:
 
 ---
 
+## Testes
+
+O projeto possui testes automatizados utilizando Jest e React Testing Library.
+
+Para rodar os testes:
+
+```bash
+npm run test
+
 # 🏗 Possíveis melhorias futuras
 
 * Paginação de Pokémons
