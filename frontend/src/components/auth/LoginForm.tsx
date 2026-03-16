@@ -27,7 +27,7 @@ export default function LoginForm() {
 
       setLoading(true);
 
-      const res = await fetch("/auth/login", {
+      const res = await fetch("https://desafio-pokemon-api-seven.vercel.app/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
