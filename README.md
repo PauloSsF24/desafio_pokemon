@@ -12,7 +12,7 @@ Aplicação Fullstack desenvolvida como desafio técnico. O projeto consiste em 
 * React
 * TypeScript
 * TailwindCSS
-* Context API (ThemeContext)
+* Context API
 
 ## Backend
 
@@ -25,6 +25,7 @@ Aplicação Fullstack desenvolvida como desafio técnico. O projeto consiste em 
 
 * PostgreSQL
 * Prisma ORM
+* Supabase
 
 ---
 
@@ -34,7 +35,7 @@ https://desafio-pokemon-omega.vercel.app/
 
 # 🎨 Sistema de Temas (Diferencial)
 
-Ao acessar a página inicial, o usuário pode escolher seu **Pokémon inicial**, que altera toda a paleta de cores do sistema.
+Ao acessar a página inicial, o usuário pode entender melhorar as funcionalidades e escolher seu **Pokémon inicial**, que altera toda a paleta de cores do sistema.
 
 ### 🌿 Bulbasaur
 
@@ -98,28 +99,58 @@ Operações disponíveis:
 # 🖥 Estrutura do Projeto
 
 ```
-src
- ├ app
- │  ├ (public)
- │  │   ├ page.tsx
- │  │   ├ login
- │  │   └ register
- │  │
- │  ├ (admin)
- │  │   ├ dashboard
- │  │   └ pokemons
- │
- ├ components
- │   ├ Navbar.tsx
- │   ├ Sidebar.tsx
- │   ├ PokemonForm.tsx
- │   └ StarterSelector.tsx
- │
- ├ context
- │   └ ThemeContext.tsx
- │
- ├ services
- │   └ api.ts
+src/
+├── app/
+│ ├── (public)/
+│ │ ├── page.tsx
+│ │ ├── login/
+│ │ │ └── page.tsx
+│ │ └── register/
+│ │ ├── page.tsx
+│ │ └── layout.tsx
+│ ├── (admin)/
+│ │ ├── dashboard/
+│ │ │ └── page.tsx
+│ │ └── pokemons/
+│ │ ├── page.tsx
+│ │ ├── layout.tsx
+│ │ ├── create/
+│ │ │ └── page.tsx
+│ │ └── edit/[id]/
+│ │ └── page.tsx
+│ ├── api/
+│ │ └── stats/
+│ │ └── route.ts
+│ ├── layout.tsx
+│ ├── globals.css
+│ └── favicon.ico
+├── components/
+│ ├── auth/
+│ │ ├── LoginForm.tsx
+│ │ └── RegisterForm.tsx
+│ ├── dashboard/
+│ │ ├── DashboardCards.tsx
+│ │ ├── DashboardHeader.tsx
+│ │ └── PokemonTable.tsx
+│ ├── Navbar.tsx
+│ ├── Sidebar.tsx
+│ ├── PokemonForm.tsx
+│ ├── StarterSelector.tsx
+│ ├── Hero.tsx
+│ ├── CTA.tsx
+│ ├── Features.tsx
+│ └── Comofunciona.tsx
+├── context/
+│ └── ThemeContext.tsx
+├── hooks/
+│ └── useAuth.ts
+├── lib/
+│ └── pokemonTypes.ts
+├── services/
+│ └── api.ts
+└── types/
+└── pokemon.ts
+(+ __tests__/ na raiz do src)
 ```
 
 ---
@@ -151,13 +182,19 @@ yarn install
 ## 3️⃣ Rodar a aplicação
 
 ```
+Para rodar o backend
+
+npm run start:dev
+
+Para rodar o frontend
+
 npm run dev
 ```
 
 A aplicação estará disponível em:
 
 ```
-http://localhost:3000
+http://localhost:3001
 ```
 
 ---
