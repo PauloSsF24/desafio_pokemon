@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function StarterSelector() {
-  const { changeTheme } = useTheme();
+
+  const { changeTheme, theme } = useTheme();
 
   const starters = [
     {
@@ -30,7 +32,7 @@ export default function StarterSelector() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--bg)] px-6">
 
-      <h1 className="text-4xl font-bold mb-10 text-[var(--secondary)]">
+      <h1 className="text-4xl font-bold mb-10 text-[var(--primary)]">
         Escolha seu Pokémon inicial
       </h1>
 
@@ -38,10 +40,23 @@ export default function StarterSelector() {
 
         {starters.map((pokemon) => (
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.08, rotate: 1 }}
+            whileTap={{ scale: 0.95 }}
             key={pokemon.name}
             onClick={() => changeTheme(pokemon.theme)}
-            className="bg-[var(--card)] p-6 rounded-xl shadow-lg hover:scale-105 transition transform flex flex-col items-center hover:scale-110 hover:rotate-1 transition-all duration-300"
+            className={`
+              bg-[var(--card)]
+              p-6
+              rounded-xl
+              shadow-lg
+              flex
+              flex-col
+              items-center
+              transition-all
+              duration-300
+              ${theme === pokemon.theme ? "ring-4 ring-[var(--primary)]" : ""}
+            `}
           >
 
             <Image
@@ -59,7 +74,7 @@ export default function StarterSelector() {
               {pokemon.name}
             </h2>
 
-          </button>
+          </motion.button>
 
         ))}
 

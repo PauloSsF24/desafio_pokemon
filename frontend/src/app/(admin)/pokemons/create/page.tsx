@@ -5,15 +5,18 @@ import { apiFetch } from "@/services/api";
 import { useRouter } from "next/navigation";
 
 export default function CreatePokemon() {
+
   const router = useRouter();
 
   async function handleCreate(data: any) {
+
     await apiFetch("/pokemons", {
       method: "POST",
       body: JSON.stringify(data),
     });
 
-    router.push("/pokemons");
+    router.refresh(); // 🔄 revalida dados do dashboard
+    router.push("/pokemons"); // navega para lista
   }
 
   return (

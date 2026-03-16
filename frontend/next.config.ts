@@ -1,9 +1,18 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
-    domains: ["assets.pokemon.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.pokemon.com",
+      },
+    ],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

@@ -20,10 +20,6 @@ export default function Navbar() {
             Login
           </Link>
 
-          <Link href="/register" className="hover:opacity-80 transition">
-            Registrar
-          </Link>
-
         </div>
 
       </div>

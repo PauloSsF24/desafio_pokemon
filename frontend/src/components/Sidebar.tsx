@@ -28,14 +28,6 @@ export default function Sidebar() {
           >
             Dashboard
           </Link>
-
-          <Link
-            href="/pokemons/create"
-            className="hover:bg-[var(--accent)] p-2 rounded transition"
-          >
-            Adicionar Pokémon
-          </Link>
-
         </nav>
 
       </div>

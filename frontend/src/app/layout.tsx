@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/context/ThemeContext";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 export default function RootLayout({ children }: any) {
@@ -7,6 +8,7 @@ export default function RootLayout({ children }: any) {
       <body className="min-h-screen bg-[var(--bg)]">
         <ThemeProvider>
           {children}
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

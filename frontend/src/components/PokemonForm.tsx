@@ -1,83 +1,162 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
+import { toast } from "sonner";
 
-export default function PokemonForm({ initialData, onSubmit }: any) {
 
-  const [name, setName] = useState(initialData?.name || "");
-  const [type, setType] = useState(initialData?.type || "");
-  const [level, setLevel] = useState(initialData?.level || 1);
-  const [hp, setHp] = useState(initialData?.hp || 10);
-  const [pokedexNumber, setPokedexNumber] = useState(
-    initialData?.pokedexNumber || 1
-  );
+type Pokemon = {
+  id?: string;
+  name: string;
+  type: string;
+  level: number;
+  hp: number;
+  pokedexNumber: number;
+};
 
-  function handleSubmit(e: any) {
-    e.preventDefault();
+type Props = {
+  initialData?: Pokemon;
+  onSubmit: (data: Pokemon) => Promise<void>;
+};
 
-    onSubmit({
-      name,
-      type,
-      level: Number(level),
-      hp: Number(hp),
-      pokedexNumber: Number(pokedexNumber),
-    });
+const pokemonTypes = [
+  "Normal","Fire","Water","Electric","Grass","Ice",
+  "Fighting","Poison","Ground","Flying","Psychic",
+  "Bug","Rock","Ghost","Dragon","Dark","Steel","Fairy"
+];
+
+export default function PokemonForm({ initialData, onSubmit }: Props) {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting }
+  } = useForm<Pokemon>({
+    defaultValues: initialData || {
+      name: "",
+      type: "",
+      level: 1,
+      hp: 10,
+      pokedexNumber: 1
+    }
+  });
+
+  async function submit(data: Pokemon) {
+    await onSubmit(data);
+
+    toast.success("Pokémon salvo com sucesso!");
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-[var(--card)] p-6 rounded-lg shadow space-y-4 max-w-md text-[var(--secondary)]"
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      onSubmit={handleSubmit(submit)}
+      className="
+      bg-[var(--card)]
+      p-6
+      rounded-xl
+      shadow-md
+      space-y-5
+      max-w-md
+      text-[var(--secondary)]
+      "
     >
-
       <h2 className="text-xl font-semibold">
-        Dados do Pokémon
+        {initialData ? "Editar Pokémon" : "Novo Pokémon"}
       </h2>
 
-      <input
-        className="border rounded p-2 w-full"
-        placeholder="Nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      {/* Nome */}
+      <div>
+        <label className="text-sm font-medium">
+          Nome
+        </label>
 
-      <input
-        className="border rounded p-2 w-full"
-        placeholder="Tipo"
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-      />
+        <input
+          {...register("name", { required: true })}
+          className="border rounded p-2 w-full mt-1"
+          placeholder="Ex: Pikachu"
+        />
+      </div>
 
-      <input
-        className="border rounded p-2 w-full"
-        type="number"
-        placeholder="Nível"
-        value={level}
-        onChange={(e) => setLevel(e.target.value)}
-      />
+      {/* Tipo */}
+      <div>
+        <label className="text-sm font-medium">
+          Tipo
+        </label>
 
-      <input
-        className="border rounded p-2 w-full"
-        type="number"
-        placeholder="HP"
-        value={hp}
-        onChange={(e) => setHp(e.target.value)}
-      />
+        <select
+          {...register("type", { required: true })}
+          className="border rounded p-2 w-full mt-1"
+        >
+          <option value="">Selecione</option>
 
-      <input
-        className="border rounded p-2 w-full"
-        type="number"
-        placeholder="Número da Pokedex"
-        value={pokedexNumber}
-        onChange={(e) => setPokedexNumber(e.target.value)}
-      />
+          {pokemonTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Nível */}
+      <div>
+        <label className="text-sm font-medium">
+          Nível
+        </label>
+
+        <input
+          type="number"
+          {...register("level", { valueAsNumber: true })}
+          className="border rounded p-2 w-full mt-1"
+        />
+      </div>
+
+      {/* HP */}
+      <div>
+        <label className="text-sm font-medium">
+          HP
+        </label>
+
+        <input
+          type="number"
+          {...register("hp", { valueAsNumber: true })}
+          className="border rounded p-2 w-full mt-1"
+        />
+      </div>
+
+      {/* Pokédex */}
+      <div>
+        <label className="text-sm font-medium">
+          Número da Pokédex
+        </label>
+
+        <input
+          type="number"
+          {...register("pokedexNumber", { valueAsNumber: true })}
+          className="border rounded p-2 w-full mt-1"
+        />
+      </div>
 
       <button
-        className="bg-[var(--primary)] hover:opacity-90 text-white px-4 py-2 rounded transition"
+        disabled={isSubmitting}
+        className="
+        bg-[var(--primary)]
+        text-white
+        px-4
+        py-2
+        rounded
+        w-full
+        font-semibold
+        hover:opacity-90
+        transition
+        disabled:opacity-50
+        "
       >
-        Salvar Pokémon
+        {isSubmitting ? "Salvando..." : "Salvar Pokémon"}
       </button>
 
-    </form>
+    </motion.form>
   );
 }

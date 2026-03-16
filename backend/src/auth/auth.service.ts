@@ -37,4 +37,8 @@ export class AuthService {
 
     return { access_token: token };
   }
+
+  async getUsers() {
+    return this.usersService.findAll();
+  }
 }

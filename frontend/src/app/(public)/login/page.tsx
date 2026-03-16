@@ -1,71 +1,18 @@
-"use client";
+import LoginForm from "@/components/auth/LoginForm";
 
-import { useState } from "react";
-import { apiFetch } from "@/services/api";
-import { useRouter } from "next/navigation";
-
-export default function Login() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  async function handleLogin(e: any) {
-    e.preventDefault();
-
-    try {
-      const data = await apiFetch("/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!data.access_token) {
-        alert("Email ou senha inválidos");
-        return;
-      }
-
-      localStorage.setItem("token", data.access_token);
-
-      router.push("/pokemons");
-
-    } catch (err) {
-      alert("Erro ao conectar com o servidor");
-    }
-  }
-
+export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center h-screen bg-[var(--bg)]">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg)] px-6">
 
-      <form
-        onSubmit={handleLogin}
-        className="bg-[var(--card)] p-8 rounded-lg shadow w-80 space-y-4"
-      >
+      <div className="w-full max-w-md">
 
-        <h1 className="text-2xl font-bold text-center text-[var(--secondary)]">
-          Login
+        <h1 className="text-3xl font-bold mb-6 text-center text-[var(--primary)]">
+          Entrar no Pokémon Center
         </h1>
 
-        <input
-          className="border p-2 w-full rounded text-[var(--secondary)]"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <LoginForm />
 
-        <input
-          className="border p-2 w-full rounded text-[var(--secondary)]"
-          type="password"
-          placeholder="Senha"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button
-          type="submit"
-          className="bg-[var(--primary)] hover:opacity-90 text-white w-full py-2 rounded"
-        >
-          Entrar
-        </button>
-
-      </form>
+      </div>
 
     </div>
   );
